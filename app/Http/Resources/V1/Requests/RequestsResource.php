@@ -21,8 +21,14 @@ class RequestsResource extends JsonResource
             'id' => $this->id,
             'email' => $this->email,
             'name' => $this->name,
-            'status' => RequestsEnums::$this->status,
+            'status' => RequestsEnums::get($this->status),
             'message' => $this->message,
+            'created' => dateTimeFormat($this->created_at),
+            'comment' => $this->requestsUsersBind ? [
+                'comment' => $this->requestsUsersBind->comment,
+                'created' => dateTimeFormat($this->requestsUsersBind->created_at),
+                'updated' => dateTimeFormat($this->requestsUsersBind->updated_at)
+            ] : null
         ];
     }
 }

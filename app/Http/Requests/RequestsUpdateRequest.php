@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class RequestsRequest extends FormRequest
+class RequestsUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,8 @@ class RequestsRequest extends FormRequest
     {
         return [
             'request_id' => ['integer'],
-			'email'=> ['required', 'email', 'max:30', 'min:10'],
-			'name'=> ['required', 'string', 'max:30', 'min:3'],
-			'message'=> ['required', 'string', 'max:200', 'min:5']
+			'comment'=> ['required', 'string', 'max:30', 'min:5'],
+			'status'=> ['required', 'string', 'max:30', 'min:3']
 		];
     }
 

@@ -5,14 +5,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\NotificationsController;
 
-class Request extends Model{
+class RequestsUsersBinds extends Model{
 
     public $timestamps = true;
 	
-	protected $fillable = ['email', 'name', 'status', 'message'];
-
-    public function requestsUsersBind(){
-        return $this->hasOne(RequestsUsersBinds::class);
-    }
+	protected $fillable = ['request_id', 'user_id', 'comment'];
 
 }

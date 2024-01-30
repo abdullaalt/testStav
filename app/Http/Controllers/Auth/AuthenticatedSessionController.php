@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use App\Services\V1\Users\UsersService;
-use App\Services\V1\Users\GroupsService;
-use App\Services\V1\Rules\RulesService;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
@@ -63,9 +59,8 @@ class AuthenticatedSessionController extends Controller
 			return response()->json(['error' => ['Неправильный логин или пароль']], 401);
 		}
 
-       
 		return response()->json([
-            'token' => $user->createToken($request->device_name)->plainTextToken
+            'token' => $user->createToken('mobile')->plainTextToken
         ]);
 	}
 

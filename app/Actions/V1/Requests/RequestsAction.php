@@ -8,7 +8,7 @@ use App\Http\Resources\V1\Requests\RequestsResource;
 
 class RequestsAction implements RequestsActionContract{
  
-    public function __invoke($source_id, $source) {
+    public function __invoke() {
         
         $requests = new RequestsItemsService();
 
