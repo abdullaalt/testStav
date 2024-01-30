@@ -2,6 +2,7 @@
 namespace App\Services\V1\Requests;
 
 use App\Models\Request;
+use App\Models\RequestsUsersBinds;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 abstract class RequestsService{
@@ -15,10 +16,33 @@ abstract class RequestsService{
 
     private int $error_code;
 
-    public function getRequests(){
-        $this->setData(Request::all());
+    public function getRequests($request){
 
+        $descriptor = new Request();
+
+        if ($this->user_id){
+            $descriptor = $descriptor->whereIn('id', $this->getMyRequestsIds());
+        }
+
+        if ($request->has('status')){
+            $descriptor = $descriptor->where('status', $request->status);
+        }
+
+        if ($request->has('date')){
+            $descriptor = $descriptor->whereDate('created_at', $request->date);
+        }
+
+        $this->setData($descriptor->get());
         return $this;
+    }
+
+    public function getMyRequestsIds(){
+        $items = RequestsUsersBinds::where('user_id', $this->user_id)->get();
+        $result = [];
+        foreach ($items as $key => $item) {
+            $result[] = $item->request_id;
+        }
+        return $result;
     }
 
     public function getRequest($request_id){

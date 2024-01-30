@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\V1;
-
+use Illuminate\Http\Request;
 use App\Contracts\V1\Requests\RequestsActionContract;
 use App\Contracts\V1\Requests\RequestActionContract;
 use App\Contracts\V1\Requests\MyRequestsActionContract;
@@ -13,9 +13,9 @@ use App\Http\Requests\RequestsUpdateRequest;
 
 class RequestsController extends Controller{
 
-    public function requests(RequestsActionContract $requestsActionContract):object|array{
+    public function requests(Request $request, RequestsActionContract $requestsActionContract):object|array{
 
-        return $requestsActionContract();
+        return $requestsActionContract($request);
 
     }
 
@@ -25,9 +25,9 @@ class RequestsController extends Controller{
 
     }
 
-    public function myRequest(MyRequestsActionContract $muRequestsActionContract):object|array{
+    public function myRequests(Request $request, MyRequestsActionContract $myRequestsActionContract):object|array{
 
-        return $muRequestsActionContract();
+        return $myRequestsActionContract($request);
 
     }
 

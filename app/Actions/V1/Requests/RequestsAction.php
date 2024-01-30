@@ -8,11 +8,13 @@ use App\Http\Resources\V1\Requests\RequestsResource;
 
 class RequestsAction implements RequestsActionContract{
  
-    public function __invoke() {
+    public function __invoke($request) {
         
         $requests = new RequestsItemsService();
 
-        return $requests->getRequests()->json(RequestsResource::class, true);
+        return $requests
+                        ->getRequests($request)
+                        ->json(RequestsResource::class, true);
 
     }
 
