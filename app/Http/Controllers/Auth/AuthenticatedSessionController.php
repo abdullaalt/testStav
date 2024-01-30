@@ -47,9 +47,8 @@ class AuthenticatedSessionController extends Controller
 	public function token(Request $request)
 	{
 		$validator = Validator::make($request->all(), [
-			'phone' => ['required', 'string'],
-			'password' => ['required', 'string', 'min:6'],
-			'device_name' => ['required', 'string']
+			'email' => ['required', 'string'],
+			'password' => ['required', 'string', 'min:6']
 		]);    
 		
 		if ($validator->fails()) {
@@ -57,32 +56,17 @@ class AuthenticatedSessionController extends Controller
 		}
 		// 1
 	 
-		$user = User::where('phone', $request->phone)->first();
+		$user = User::where('email', $request->email)->first();
 		// 2
 	 
 		if (!$user || !Hash::check($request->password, $user->password)) {
 			return response()->json(['error' => ['Неправильный логин или пароль']], 401);
 		}
-        $us = new UsersService();
-        $current_user = $us->getUser($user->id, false);
 
-        $result = [
-			'token' => $user->createToken($request->device_name)->plainTextToken,
-            'user' => $current_user['user']
-        ];
-
-        if ($user->is_admin){
-            $gs = new GroupsService();
-            $result['groups'] = $gs->getGroups();
-
-            $rs = new RulesService();
-            $result['rules'] =  $rs->getRules();
-        }
-
-        //dd($current_user);
-		// 3	 
-		return response()->json($result);
-		// 4
+       
+		return response()->json([
+            'token' => $user->createToken($request->device_name)->plainTextToken
+        ]);
 	}
 
     /**
