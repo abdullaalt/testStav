@@ -17,22 +17,15 @@ use App\Http\Controllers\V1\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', [UserController::class, 'getUser']);
-
-Route::get('/hello', function (Request $request) {
-    return 'hello';
-});
-
 Route::post('/requests', [RequestsController::class, 'store']);
 
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum', 'VerifyCsrfToken'])->group(function () {
     
     Route::put('/requests', [RequestsController::class, 'update']);
-
+    Route::get('/requests/my', [RequestsController::class, 'myRequests']);
     Route::get('/requests', [RequestsController::class, 'requests']);
     Route::get('/requests/{request_id}', [RequestsController::class, 'request']);
     Route::delete('/requests/{request_id}', [RequestsController::class, 'delete']);
-    Route::get('/requests/my', [RequestsController::class, 'myRequests']);
 });
 
 

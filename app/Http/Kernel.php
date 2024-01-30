@@ -45,6 +45,7 @@ class Kernel extends HttpKernel
             //\Illuminate\Routing\Middleware\SubstituteBindings::class,
 			\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
 			'throttle:api',
+            //\App\Http\Middleware\VerifyCsrfToken::class,
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -59,9 +60,8 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'permissions' => \App\Http\Middleware\checkUserPermission::class,
         'logs' => \App\Http\Middleware\LogsMiddleware::class,
+        'VerifyCsrfToken' => \App\Http\Middleware\VerifyCsrfToken::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
-        'limited' => \App\Http\Middleware\Limited::class,
-        'access' => \App\Http\Middleware\Access::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
