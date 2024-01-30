@@ -30,8 +30,5 @@ Route::middleware(['auth:sanctum', 'VerifyCsrfToken'])->group(function () {
 
 
 Route::prefix('auth')->namespace('API')->group(function() {
-    //Route::middleware('auth:sanctum')->post('register', 'AuthController@register');
     Route::post('login', [AuthenticatedSessionController::class, 'token']);
 });
-
-Route::get('/auth/gosuslugi', [UserController::class, 'authGosUslugi']);
