@@ -30,20 +30,6 @@ return [
 
     'disks' => [
 
-        'ftp' => [
-            'driver' => 'ftp',
-            'host' => 'fb7960l1.beget.tech',
-            'username' => 'fb7960l1_main',
-            'password' => '7vN&kunH',
-         
-            // Optional FTP Settings...
-            // 'port' => env('FTP_PORT', 21),
-            // 'root' => env('FTP_ROOT'),
-            // 'passive' => true,
-            // 'ssl' => true,
-            // 'timeout' => 30,
-        ],
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
