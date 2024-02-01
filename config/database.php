@@ -62,46 +62,6 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-		
-		'api' => [
-            'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => '178.21.10.37',
-            'port' => env('DB_PORT', '3306'),
-            'database' => 'prod',
-            'username' => 'prod_read',
-            'password' => 'GDFu89phjj$%234jsdfkih324',
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
-        ],
-		
-		'main' => [
-            'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => 'vip230.hosting.reg.ru',
-            'port' => env('DB_PORT', '3306'),
-            'database' => 'u1403625_dikdoc',
-            'username' => 'u1403625_dikdoc',
-            'password' => 'bJ5gU1rI9abM9u',
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
-        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
